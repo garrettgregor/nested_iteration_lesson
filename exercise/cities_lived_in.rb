@@ -10,6 +10,19 @@ cities_lived_in = {
 # Get a unique list of all of the cities that these humans have lived in  
 # ["Philadelphia", "Fort Collins", "Seattle", "Denver", "Santa Fe", "Portland", "Lansing", "Columbus", "Austin"]
 
+unique_cities = []
+cities_lived_in.each_value do |cities|
+    cities.each do |city|
+        unique_cities << city
+    end
+end
+unique_cities.uniq
+
+p unique_cities
+
+# or...
+
+p cities_lived_in.values.flatten.uniq
 
 
 
@@ -22,6 +35,34 @@ cities_lived_in = {
 # ["Michaela", "Mike", "Alex"]
 
 
+phil_people = []
+cities_lived_in.each do |people_cities|
+    if people_cities[1].include?("Philadelphia")
+        phil_people << people_cities[0]
+    end
+end
+
+p phil_people
+
+#  Capitalized
+
+phil_people_strings = []
+cities_lived_in.each do |people_cities|
+    if people_cities[1].include?("Philadelphia")
+        phil_people_strings << people_cities[0].to_s.capitalize
+    end
+end
+
+p phil_people_strings
+
+#  or
+
+philly_people = []
+cities_lived_in.each do |key, values|
+    philly_people << key if values.include?("Philadelphia")
+end
+
+p philly_people
 
 
 # Problem #3: 
@@ -38,3 +79,13 @@ cities_lived_in = {
 #     "Columbus => 1,
 #     "Austin" => 1
 # }
+
+city_pop = Hash.new(0)
+
+cities_lived_in.each do |_, values|
+    values.each do |value|
+        city_pop[value] += 1
+    end
+end
+
+p city_pop
